@@ -16,14 +16,17 @@
     }
     h1 {
       margin-bottom: 1rem;
+      text-align: center;
     }
     #board {
       display: grid;
-      grid-template-columns: repeat(5, 200px);
-      grid-gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 10px;
+      width: 100%;
+      max-width: 600px;
     }
     .tile {
-      height: 100px;
+      aspect-ratio: 1.5 / 1;
       background-color: #ddd;
       display: flex;
       justify-content: center;
@@ -33,12 +36,21 @@
       cursor: pointer;
       user-select: none;
       transition: background-color 0.3s;
-      font-size: 20px;
+      font-size: 1rem;
+      padding: 0.5rem;
+      box-sizing: border-box;
+      text-align: center;
     }
     .tile.revealed.red { background-color: crimson; color: white; }
     .tile.revealed.blue { background-color: royalblue; color: white; }
     .tile.revealed.white { background-color: wheat; color: black; }
     .tile.revealed.black { background-color: black; color: white; }
+
+    @media (max-width: 600px) {
+      .tile {
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
