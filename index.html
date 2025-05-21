@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codenames Game</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    #board {
+      display: grid;
+      grid-template-columns: repeat(5, 200px);
+      grid-gap: 10px;
+    }
+    .tile {
+      height: 100px;
+      background-color: #ddd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s;
+      font-size: 20px;
+    }
+    .tile.revealed.red { background-color: crimson; color: white; }
+    .tile.revealed.blue { background-color: royalblue; color: white; }
+    .tile.revealed.white { background-color: wheat; color: black; }
+    .tile.revealed.black { background-color: black; color: white; }
+  </style>
+</head>
+<body>
+  <h1>Codenames: Love and Mansi Edition</h1>
+  <div id="board"></div>
+
+  <script>
+    const words = [
+      "Kathak", "Boba", "Singh", "Tanpuro", "Basketball",
+      "Red", "Jordan", "Jhumka", "Farmingdale", "Klay",
+      "Green", "Cricket", "Sarangi", "Bharatnatyam", "Blue",
+      "Purple", "Kohli", "Steph", "Saree", "Warrior",
+      "Mehndi", "Arijit", "Crafts", "Dhoni", "Michael"
+    ];
+
+    const roles = [
+      "red", "white", "red", "blue", "blue",
+      "red", "blue", "white", "red", "blue",
+      "black", "white", "blue", "white", "red",
+      "blue", "white", "blue", "red", "blue",
+      "red", "white", "red", "blue", "white"
+    ];
+
+    const board = document.getElementById('board');
+
+    words.forEach((word, i) => {
+      const tile = document.createElement('div');
+      tile.className = 'tile';
+      tile.textContent = word;
+
+      tile.addEventListener('click', () => {
+        tile.classList.add('revealed', roles[i]);
+      });
+
+      board.appendChild(tile);
+    });
+  </script>
+</body>
+</html>
